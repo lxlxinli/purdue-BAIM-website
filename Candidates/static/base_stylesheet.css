@@ -1,0 +1,29 @@
+.banner{
+    background-color: black;
+    height:auto;
+}
+
+.cover{
+	background: url('/static/candidates/pictures/purdue_p_banner.png');
+}
+
+.PU_logo{
+    height:auto;
+    width: auto;
+    padding:35px;
+}
+
+.BAIM_logo{
+    height:69px;
+    width:264px;
+}
+
+.wording{
+    font-size: 25px;
+    color:black;
+    padding:35px;
+}
+
+.purdue_gold{
+    background-color: #CEB888;
+}

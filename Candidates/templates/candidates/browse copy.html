@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<h1>Browse Candidates</h1>
+{% csrf_token %}
+<form method ="GET">
+    <div class="form-row">
+        <div class ="form-group col-md-6">
+            {{form.keyword}}
+        </div>
+        
+        <div class ="form-group col-md-6">
+            <div class ="form-group">
+                <label class ="form-check-label" for="{{ form.analytics_experience.id_for_label }}">{{form.analytics_experience.label}} (Months) </label>
+                <div class="range-slider">
+                    <input type="text" name="{{ form.analytics_experience.id_for_label }}" id="{{ form.analytics_experience.id_for_label }}" class="js-analytics-range-slider" value="" />
+                </div>
+            </div>
+            <div class ="form-group">
+                <label class ="form-check-label" for="{{ form.professional_experience.id_for_label }}">{{form.professional_experience.label}} (Months) </label>
+                <div class="range-slider">
+                    <input type="text" name="{{ form.professional_experience.id_for_label }}" id="{{ form.professional_experience.id_for_label }}"class="js-professional-range-slider" value="" />
+                </div>   
+            </div>   
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Roles
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">        
+                {% for roles in form.roles %}
+                <a class="dropdown-item">
+                    <div>
+                        <input class="form-check-input" type="checkbox" name="{{ roles.id_for_label }}" id="{{ roles.id_for_label }}" >
+                        <label class="form-check-label" for="{{ roles.id_for_label }}">
+                        {{ roles.choice_label }}
+                        </label>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Region
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">        
+                {% for region in form.location %}
+                <a class="dropdown-item">
+                    <div>
+                        <input class="form-check-input" type="checkbox" name="{{ region.id_for_label }}" id="{{ region.id_for_label }}" >
+                        <label class="form-check-label" for="{{ region.id_for_label }}">
+                        {{ region.choice_label }}
+                        </label>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Industry
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">        
+                {% for industry in form.industry %}
+                <a class="dropdown-item">
+                    <div>
+                        <input class="form-check-input" type="checkbox" name="{{ industry.id_for_label }}" id="{{ industry.id_for_label }}" >
+                        <label class="form-check-label" for="{{ industry.id_for_label }}">
+                        {{ industry.choice_label }}
+                        </label>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Skills
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">        
+                {% for skills in form.skills %}
+                <a class="dropdown-item">
+                    <div>
+                        <input class="form-check-input" type="checkbox" name="{{ skills.id_for_label }}" id="{{ skills.id_for_label }}" >
+                        <label class="form-check-label" for="{{ skills.id_for_label }}">
+                        {{ skills.choice_label }}
+                        </label>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Certification
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">        
+                {% for certs in form.certification %}
+                <a class="dropdown-item">
+                    <div>
+                        <input class="form-check-input" type="checkbox" name="{{ certs.id_for_label }}" id="{{ certs.id_for_label }}" >
+                        <label class="form-check-label" for="{{ certs.id_for_label }}">
+                        {{ certs.choice_label }}
+                        </label>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+          <button type="submit">Search</button>
+    </div>
+</form>
+
+{%  load columns %}
+
+<div class="row_0">
+    {% for col in studentlist|columns:4 %}
+        <div class="col-md-3">
+            <div class="row_1">
+            {% for user in col %}
+                <img class="headshots" src="{{ user.picturelink }}" alt="">
+            {% endfor %}
+            </div>
+            <div class="row_2">
+                {% for user in col %}
+                    <a class="user" href="{{ user.linkedin }}" target="_blank"> {{ user.first_name}} {{ user.last_name }}</a>
+                {% endfor %}
+            </div>
+
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
