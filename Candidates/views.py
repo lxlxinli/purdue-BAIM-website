@@ -6,46 +6,6 @@ import math
 # from Candidates.filters import rolesseeking,location,Certification
 
 # Create your views here.
-
-def browse(request):
-#     student_list = student.objects.all() #add order by last name
-#     # certification_list = certification.objects.all()[1:]
-#     rolesfilter = rolesseeking(request.GET, queryset=student_list)
-#     locationfilter = location(request.GET,queryset=student_list)
-#     certificationfilter = Certification(request.GET,queryset=certification_list)
-    form = CandidatePreferencesForm
-    student_list = student.objects.all()
-    data_analyst_query = request.GET.get('id_roles_0')
-    business_analyst_query = request.GET.get('id_roles_1')
-    data_scientist_query = request.GET.get('id_roles_2')
-    consultant_query = request.GET.get('id_roles_3')
-    developer_query = request.GET.get('id_roles_4')
-
-
-    if data_analyst_query == 'on':
-        student_list = student_list.filter(data_analyst=1) 
-    
-    if business_analyst_query == 'on':
-        student_list = student_list.filter(business_analyst=1)
-
-    if data_scientist_query == 'on':
-        student_list = student_list.filter(data_scientist=1)
-
-    if consultant_query == 'on':
-        student_list = student_list.filter(consultant=1)
-
-    if developer_query == 'on':
-        student_list = student_list.filter(developer=1)
-
-    length = (len(student_list))
-    rows = len(student_list)/5
-
-
-    args ={'form':form,'studentlist':student_list, 'length':length, 'rows':range(rows)}
-    # args = {'rolesfilter':rolesfilter,'locationfilter':locationfilter,"certificationfilter":certificationfilter}
-
-    return render(request,'candidates/browsecandidates.html',args)
-
 def browsecandidates(request):
     #loading form and student list
     if request.method =="GET":
@@ -126,7 +86,7 @@ def browsecandidates(request):
 
         #Filtering based on queries  #4/6 - consider using list and for loops 
         #Experience Ranges
-        value = re.compile(r'(\d{1,2});(\d{1,2})') #Regex to find min and max value
+        value = re.compile(r'(\d{1,2});(\d{1,3})') #Regex to find min and max value
 
         #Analyst
         if analyst_exp_range is not None:
@@ -279,3 +239,43 @@ def browsecandidates(request):
 
         args ={'form':form,'studentlist':student_list}
         return render(request, 'candidates/browse.html',args)
+
+# Code For testing things only
+def browse(request):
+#     student_list = student.objects.all() #add order by last name
+#     # certification_list = certification.objects.all()[1:]
+#     rolesfilter = rolesseeking(request.GET, queryset=student_list)
+#     locationfilter = location(request.GET,queryset=student_list)
+#     certificationfilter = Certification(request.GET,queryset=certification_list)
+    form = CandidatePreferencesForm
+    student_list = student.objects.all()
+    data_analyst_query = request.GET.get('id_roles_0')
+    business_analyst_query = request.GET.get('id_roles_1')
+    data_scientist_query = request.GET.get('id_roles_2')
+    consultant_query = request.GET.get('id_roles_3')
+    developer_query = request.GET.get('id_roles_4')
+
+
+    if data_analyst_query == 'on':
+        student_list = student_list.filter(data_analyst=1) 
+    
+    if business_analyst_query == 'on':
+        student_list = student_list.filter(business_analyst=1)
+
+    if data_scientist_query == 'on':
+        student_list = student_list.filter(data_scientist=1)
+
+    if consultant_query == 'on':
+        student_list = student_list.filter(consultant=1)
+
+    if developer_query == 'on':
+        student_list = student_list.filter(developer=1)
+
+    length = (len(student_list))
+    rows = len(student_list)/5
+
+
+    args ={'form':form,'studentlist':student_list, 'length':length, 'rows':range(rows)}
+    # args = {'rolesfilter':rolesfilter,'locationfilter':locationfilter,"certificationfilter":certificationfilter}
+
+    return render(request,'candidates/browsecandidates.html',args)
