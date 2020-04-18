@@ -2,6 +2,51 @@
 
 {% block head %}
 
+<style>
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.flip-card-front {
+  background-color: transparent;
+  color: transparent;
+}
+
+.flip-card-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
+}
+</style>
+
 {% endblock %}
 
 {% block body %}
@@ -137,7 +182,18 @@
             <div class="col" >
             {% for user in col %}
             <div class="col" >
+            <div class="flip-card">
+            <div class="flip-card-inner">
+            <div class="flip-card-front">
                 <img class="headshots" src="{{ user.picturelink }}" alt="">
+            </div>
+            <div class="flip-card-back">
+                  <iframe height=100% =block width=100% src="https://www.youtube.com/embed/fc0YHsjP8ak">
+                    </iframe>
+            </div>
+            </div>
+            </div>
+
             </div>
             <div class="col align-center" >
                 <a class="user" href="{{ user.linkedin }}" target="_blank"> {{ user.first_name}} {{ user.last_name }}</a>
