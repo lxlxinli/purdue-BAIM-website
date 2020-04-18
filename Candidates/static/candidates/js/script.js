@@ -2,7 +2,7 @@ $(document).ready(function() {
 	var $analytics_range = $(".js-analytics-range-slider"),
 	instance,
 	min = 0,
-	max = 36,
+	max = 60,
 	from = 0,
 	to = 0;
   
@@ -12,14 +12,14 @@ $(document).ready(function() {
 	min: min,
 	max: max,
 	from: 0,
-	to: 36,
+	to: 60,
   });
   instance = $analytics_range.data("ionRangeSlider");
   
   var $prof_range = $(".js-professional-range-slider"),
 	instance,
 	min = 0,
-	max = 60,
+	max = 120,
 	from = 0,
 	to = 0;
   
@@ -29,7 +29,7 @@ $(document).ready(function() {
 	min: min,
 	max: max,
 	from: 0,
-	to: 60,
+	to: 120,
   });
   instance = $prof_range.data("ionRangeSlider");
 });
