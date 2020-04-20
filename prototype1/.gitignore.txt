@@ -6,3 +6,11 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 .vscode/
+
+# Visual Studio Code # 
+.vscode/* 
+!.vscode/settings.json 
+!.vscode/tasks.json 
+!.vscode/launch.json 
+!.vscode/extensions.json 
+.history
