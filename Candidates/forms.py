@@ -75,8 +75,8 @@ CERTIFICATION_CHOICES =[
 
 class CandidatePreferencesForm(forms.Form):
     keyword = forms.CharField(required=False)
-    analytics_experience = forms.IntegerField(required=False)
-    professional_experience = forms.IntegerField(required=False)
+    analytics_experience = forms.CharField(required=False, initial='0;60')
+    professional_experience = forms.CharField(required=False, initial='0;120')
     roles = forms.MultipleChoiceField(required=False,widget=forms.CheckboxSelectMultiple,choices=ROLES_CHOICES)
     location = forms.MultipleChoiceField(required=False,widget=forms.CheckboxSelectMultiple,choices=LOCATION_CHOICES)
     industry = forms.MultipleChoiceField(required=False,widget=forms.CheckboxSelectMultiple,choices=INDUSTRY_CHOICES)

@@ -11,8 +11,8 @@ $(document).ready(function() {
 	type: "double",
 	min: min,
 	max: max,
-	from: 0,
-	to: 60,
+	from: ana_min,
+	to: ana_max,
   });
   instance = $analytics_range.data("ionRangeSlider");
   
@@ -28,8 +28,21 @@ $(document).ready(function() {
 	type: "double",
 	min: min,
 	max: max,
-	from: 0,
-	to: 120,
+	from: prof_min,
+	to: prof_max,
   });
+
   instance = $prof_range.data("ionRangeSlider");
+
+  var test = [1,2,3]
+
+  window.onload = function() {
+	var patt = /id_\w+_\d+/g;
+	var match = id_list.match(patt);
+
+  	for(var i in match){
+		  this.console.log(match[i])
+		  document.getElementById(match[i]).checked = true;
+	  };
+	};
 });
