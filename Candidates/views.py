@@ -1,17 +1,23 @@
 from django.shortcuts import render
 from Candidates.models import student
 from Candidates.forms import CandidatePreferencesForm
-import re
-import math
+import re,math,copy
 # from Candidates.filters import rolesseeking,location,Certification
 
 # Create your views here.
 def browsecandidates(request):
     #loading form and student list
-    if request.method =="GET":
+    if request.GET != {} :
+        dic = copy.deepcopy(request.GET)
+        del dic['id_analytics_experience']
+        del dic['id_professional_experience']
+
+        id_list = []
+        for k in dic: 
+            id_list.append(k)
+
         form = CandidatePreferencesForm(request.GET)
         student_list = student.objects.all()
-        print(CandidatePreferencesForm(request.GET))
         #Experience Range Query
         analyst_exp_range = request.GET.get('id_analytics_experience')
         professional_exp_range = request.GET.get('id_professional_experience')
@@ -230,15 +236,42 @@ def browsecandidates(request):
         if INFORM_CAP_aCAP_query == 'on':
             student_list = student_list.filter(INFORM_CAP_aCAP=1) 
 
-        args ={'form':form,'studentlist':student_list}
+        print(id_list)
+
+        args ={'form':form,'studentlist':student_list, 'ana_minvalue':ana_minvalue, 
+        'ana_maxvalue':ana_maxvalue, 'prof_minvalue':prof_minvalue, 'prof_maxvalue':prof_maxvalue,"id_list":id_list}
+
         return render(request, 'candidates/browse.html',args)
 
     else:
         form = CandidatePreferencesForm
         student_list = student.objects.all()
+        ana_minvalue=0
+        ana_maxvalue=60
+        prof_minvalue=0
+        prof_maxvalue=120
+        id_list = []
 
-        args ={'form':form,'studentlist':student_list}
+        args ={'form':form,'studentlist':student_list, 'ana_minvalue':ana_minvalue, 
+        'ana_maxvalue':ana_maxvalue, 'prof_minvalue':prof_minvalue, 'prof_maxvalue':prof_maxvalue, "id_list":id_list}
         return render(request, 'candidates/browse.html',args)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Code For testing things only
 def browse(request):
@@ -247,13 +280,42 @@ def browse(request):
 #     rolesfilter = rolesseeking(request.GET, queryset=student_list)
 #     locationfilter = location(request.GET,queryset=student_list)
 #     certificationfilter = Certification(request.GET,queryset=certification_list)
-    form = CandidatePreferencesForm
+    form = CandidatePreferencesForm(request.GET)
     student_list = student.objects.all()
     data_analyst_query = request.GET.get('id_roles_0')
     business_analyst_query = request.GET.get('id_roles_1')
     data_scientist_query = request.GET.get('id_roles_2')
     consultant_query = request.GET.get('id_roles_3')
     developer_query = request.GET.get('id_roles_4')
+    analyst_exp_range = request.GET.get('id_analytics_experience')
+    professional_exp_range = request.GET.get('id_professional_experience')
+
+    ana_minvalue=0
+    ana_maxvalue=60
+    prof_minvalue=0
+    prof_maxvalue=120
+
+    #Filtering based on queries  #4/6 - consider using list and for loops 
+    #Experience Ranges
+    value = re.compile(r'(\d{1,2});(\d{1,3})') #Regex to find min and max value
+
+    #Analyst
+    if analyst_exp_range is not None:
+        ana = value.search(analyst_exp_range)
+        ana_minvalue = int(ana.group(1))
+        ana_maxvalue = int(ana.group(2))
+        student_list = student_list.filter(analytics_experience__lte=ana_maxvalue)
+        student_list = student_list.filter(analytics_experience__gte=ana_minvalue)
+        
+
+    #Professional
+    if analyst_exp_range is not None:
+        prof = value.search(professional_exp_range)
+        prof_minvalue = int(prof.group(1))
+        prof_maxvalue = int(prof.group(2))
+        student_list = student_list.filter(total_professional_experience__lte=prof_maxvalue)
+        student_list = student_list.filter(total_professional_experience__gte=prof_minvalue)
+
 
 
     if data_analyst_query == 'on':
@@ -271,11 +333,7 @@ def browse(request):
     if developer_query == 'on':
         student_list = student_list.filter(developer=1)
 
-    length = (len(student_list))
-    rows = len(student_list)/5
-
-
-    args ={'form':form,'studentlist':student_list, 'length':length, 'rows':range(rows)}
-    # args = {'rolesfilter':rolesfilter,'locationfilter':locationfilter,"certificationfilter":certificationfilter}
+    args ={'form':form,'studentlist':student_list, 'ana_minvalue':ana_minvalue, 
+        'ana_maxvalue':ana_maxvalue, 'prof_minvalue':prof_minvalue, 'prof_maxvalue':prof_maxvalue  }
 
     return render(request,'candidates/browsecandidates.html',args)
