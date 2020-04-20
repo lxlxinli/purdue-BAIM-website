@@ -36,15 +36,44 @@
 }
 
 .flip-card-front {
+    z-index: 2;
   background-color: transparent;
   color: transparent;
 }
 
 .flip-card-back {
-  background-color: #2980b9;
+  background-color: black;
   color: white;
   transform: rotateY(180deg);
 }
+
+.over-img{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+}
+
+
+.lower-img{
+    position: absolute;
+    top:10%;
+    left:5%;
+    height:90%;
+    width: 90%;
+}
+
+
+.top-text{
+    position: absolute;
+    top: 87%;
+    left:42%;
+    color: black;
+    font-size: 80%;
+
+}
+
 </style>
 
 {% endblock %}
@@ -174,7 +203,7 @@
 
 {%  load columns %}
 
-
+{% load static %}
 <div class="row flex-center">
 <div class="row flex">
     {% for col in studentlist|columns:4 %}
@@ -185,18 +214,23 @@
             <div class="flip-card">
             <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img class="headshots" src="{{ user.picturelink }}" alt="">
+                <img class="headshots lower-img" src="{{ user.picturelink }}" alt="">
+                <img class=" headshot over-img" src="{% static 'candidates/pictures/Frame.png' %}" alt="">
+                <b><p class="top-text" > {{ user.first_name}} {{ user.last_name }}</p></b>
             </div>
             <div class="flip-card-back">
-                  <iframe height=100% =block width=100% src="https://www.youtube.com/embed/fc0YHsjP8ak">
-                    </iframe>
+                <iframe height=85% =block width=100% src="https://www.youtube.com/embed/fc0YHsjP8ak">
+                </iframe>
+                <form action="{{ user.linkedin }}" target="_blank">
+                    <input type="submit" value="VIEW PROFILE" />
+                </form>
             </div>
             </div>
             </div>
 
             </div>
             <div class="col align-center" >
-                <a class="user" href="{{ user.linkedin }}" target="_blank"> {{ user.first_name}} {{ user.last_name }}</a>
+                <br>
             </div>
             {% endfor %}
             </div>
