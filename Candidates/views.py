@@ -236,8 +236,6 @@ def browsecandidates(request):
         if INFORM_CAP_aCAP_query == 'on':
             student_list = student_list.filter(INFORM_CAP_aCAP=1) 
 
-        print(id_list)
-
         args ={'form':form,'studentlist':student_list, 'ana_minvalue':ana_minvalue, 
         'ana_maxvalue':ana_maxvalue, 'prof_minvalue':prof_minvalue, 'prof_maxvalue':prof_maxvalue,"id_list":id_list}
 

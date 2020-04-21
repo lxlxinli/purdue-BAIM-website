@@ -23,6 +23,7 @@ class student(models.Model):
     linkedin = models.URLField(default ="")
     hired = models.IntegerField(choices=Answer.choices,default=0)
     picturelink = models.URLField(default ="")
+    videolink = models.URLField(default="https://tshop.r10s.jp/hanjo/cabinet/c/imgrc0071257391.jpg?fitin=330:330")
     analytics_experience = models.IntegerField(default =0)
     total_professional_experience = models.IntegerField(default =0)
     #Roles Seeking

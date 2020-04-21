@@ -222,7 +222,7 @@
                 <b><p class="top-text" > {{ user.first_name}} {{ user.last_name }}</p></b>
             </div>
             <div class="flip-card-back">
-                <iframe height=85% =block width=100% src="https://www.youtube.com/embed/fc0YHsjP8ak">
+                <iframe height=85% =block width=100% src="{{ user.videolink }}">
                 </iframe>
                 <form action="{{ user.linkedin }}" target="_blank">
                     <input type="submit" value="VIEW PROFILE" />

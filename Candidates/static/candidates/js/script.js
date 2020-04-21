@@ -34,8 +34,6 @@ $(document).ready(function() {
 
   instance = $prof_range.data("ionRangeSlider");
 
-  var test = [1,2,3]
-
   window.onload = function() {
 	var patt = /id_\w+_\d+/g;
 	var match = id_list.match(patt);
