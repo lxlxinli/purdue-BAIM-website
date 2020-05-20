@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'import_export',
     'jquery',
     'columns',
+    'graphs',
+    'django_matplotlib',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +127,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'Candidates/static/'),
+    os.path.join(BASE_DIR, 'graphs/static/'),
     '/var/www/static/',
 ]

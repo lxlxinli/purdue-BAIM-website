@@ -20,5 +20,6 @@ from prototype1 import views
 urlpatterns = [
     re_path(r'^$',views.redirectlink,name="redirect"),
     path('admin/', admin.site.urls),
-    re_path(r'^candidates/',include('Candidates.urls')),
+    re_path(r'^candidates/',include('Candidates.urls','Candidates'), name="Candidates"),
+    re_path(r'^graphs/',include('graphs.urls','graphs'), name="graphs"),
 ]

@@ -32,6 +32,8 @@ $(document).ready(function() {
 	to: prof_max,
   });
 
+  $('#memberModal').modal('show');
+
   instance = $prof_range.data("ionRangeSlider");
 
   window.onload = function() {

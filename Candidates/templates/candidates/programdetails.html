@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'candidates/CSS/programdetails/styles.css' %}">
+<link rel="stylesheet" href="{% static 'candidates/CSS/programdetails/swiper.css' %}">
+
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+
+{% endblock %}
+
+{% block body %}
+
+{{words}}
+
+   <!-- Testimonials -->
+   <div class="slider-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+
+                <!-- Card Slider -->
+                <div class="slider-container">
+                    <div class="swiper-container card-slider">
+                        <div class="swiper-wrapper">
+                            
+                            <!-- Slide -->
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <img class="card-image" src="{% static 'candidates/pictures/Rank1.png' %}" alt="alternative">
+                                    <div class="card-body">
+                                        <p class="testimonial-text">Master's in Data Science</p>
+                                        <p class="testimonial-author">Data Science Degree Programs, 2019</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end of swiper-slide -->
+                            <!-- end of slide -->
+    
+                            <!-- Slide -->
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <img class="card-image" src="{% static 'candidates/pictures/Rank12.png' %}" alt="alternative">
+                                    <div class="card-body">
+                                        <p class="testimonial-text">Big Data Management in the World</p>
+                                        <p class="testimonial-author">Best-Masters.com, 2019</p>
+                                    </div>
+                                </div>        
+                            </div> <!-- end of swiper-slide -->
+                            <!-- end of slide -->
+    
+                            <!-- Slide -->
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <img class="card-image" src="{% static 'candidates/pictures/TopTier.png' %}" alt="alternative">
+                                    <div class="card-body">
+                                        <p class="testimonial-text">Best Master's (MS) in Analytics in the USA</p>
+                                        <p class="testimonial-author">Stoodnt.com, 2019</p>
+                                    </div>
+                                </div>        
+                            </div> <!-- end of swiper-slide -->
+                            <!-- end of slide -->
+    
+                            <!-- Slide -->
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <img class="card-image" src="{% static 'candidates/pictures/Rank1.png' %}" alt="alternative">
+                                    <div class="card-body">
+                                        <p class="testimonial-text">Data Science Degree Program in the United States</p>
+                                        <p class="testimonial-author">CIO Magazine, 2018</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end of swiper-slide -->
+                            <!-- end of slide -->
+    
+                            <!-- Slide -->
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <img class="card-image" src="{% static 'candidates/pictures/Rank1.png' %}" alt="alternative">
+                                    <div class="card-body">
+                                        <p class="testimonial-text">MS Business Analytics and Information Management in North America</p>
+                                        <p class="testimonial-author">Best-Masters.com, 2018</p>
+                                    </div>
+                                </div>        
+                            </div> <!-- end of swiper-slide -->
+                            <!-- end of slide -->
+    
+                            <!-- Slide -->
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <img class="card-image" src="{% static 'candidates/pictures/Rank12.png' %}" alt="alternative">
+                                    <div class="card-body">
+                                        <p class="testimonial-text">MS Business Analytics in the World</p>
+                                        <p class="testimonial-author">QS, 2018</p>
+                                    </div>
+                                </div>        
+                            </div> <!-- end of swiper-slide -->
+                            <!-- end of slide -->
+
+                            <!-- Slide -->
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <img class="card-image" src="{% static 'candidates/pictures/Rank2.png' %}" alt="alternative">
+                                    <div class="card-body">
+                                        <p class="testimonial-text">Information Systems Management in North America</p>
+                                        <p class="testimonial-author">Best-Masters.com, 2017</p>
+                                    </div>
+                                </div>        
+                            </div> <!-- end of swiper-slide -->
+                            <!-- end of slide -->
+
+                            <!-- Slide -->
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <img class="card-image" src="{% static 'candidates/pictures/Rank9.png' %}" alt="alternative">
+                                    <div class="card-body">
+                                        <p class="testimonial-text">MS Business Analytics in the World</p>
+                                        <p class="testimonial-author">QS, 2017</p>
+                                    </div>
+                                </div>        
+                            </div> <!-- end of swiper-slide -->
+                            <!-- end of slide -->
+                        
+                        </div> <!-- end of swiper-wrapper -->
+    
+                        <!-- Add Arrows -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <!-- end of add arrows -->
+    
+                    </div> <!-- end of swiper-container -->
+                </div> <!-- end of slider-container -->
+                <!-- end of card slider -->
+
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div> <!-- end of slider-1 -->
+<!-- end of testimonials -->
+
+
+<script src="https://unpkg.com/swiper/js/swiper.js"></script>
+<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+
+
+<script type="text/javascript" src="{% static 'candidates/js/programdetails/scripts.js' %}"></script>
+<!-- <script type="text/javascript" src="{% static 'candidates/js/programdetails/swiper.min.js' %}"></script> -->
+{% endblock %}

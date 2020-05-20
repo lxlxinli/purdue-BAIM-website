@@ -5,6 +5,7 @@ from import_export import resources
 
 # Register your models here.
 @admin.register(student)
+
 class ViewAdmin(ImportExportModelAdmin):
     pass
 

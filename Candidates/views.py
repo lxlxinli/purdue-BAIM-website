@@ -254,11 +254,15 @@ def browsecandidates(request):
         'ana_maxvalue':ana_maxvalue, 'prof_minvalue':prof_minvalue, 'prof_maxvalue':prof_maxvalue, "id_list":id_list}
         return render(request, 'candidates/browse.html',args)
 
+def achievements(request):
+    list = ['1','2','3','4','5','6']
+    words = ['Apples','Orange','Pear']
+    args={'list':list,'words':words}
+    return render(request, 'candidates/achievements.html',args)
 
-
-
-
-
+def programdetails(request):
+    args={}
+    return render(request, 'candidates/programdetails.html',args)
 
 
 
