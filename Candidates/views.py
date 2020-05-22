@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from Candidates.models import student
+from Candidates.models import student, achievement
 from Candidates.forms import CandidatePreferencesForm
 import re,math,copy
 # from Candidates.filters import rolesseeking,location,Certification
@@ -255,9 +255,24 @@ def browsecandidates(request):
         return render(request, 'candidates/browse.html',args)
 
 def achievements(request):
-    list = ['1','2','3','4','5','6']
-    words = ['Apples','Orange','Pear']
-    args={'list':list,'words':words}
+    # test = achievement.objects.order_by('conference').values_list('conference', flat=True).distinct()
+    achievement_list = achievement.objects.all()
+    BA_EXPO = achievement_list.filter(conference="BA_EXPO")
+    INFORMS = achievement_list.filter(conference="INFORMS")
+    MWDSI = achievement_list.filter(conference="MWDSI")
+    SAS = achievement_list.filter(conference="SAS")
+    SEDSI = achievement_list.filter(conference="SEDSI")
+    OTHERS = achievement_list.filter(conference="OTHERS")
+
+    conferences = [BA_EXPO,INFORMS,MWDSI,SAS,SEDSI,OTHERS]
+    string_conferences = ["BA_EXPO","INFORMS","MWDSI","SAS","SEDSI","OTHERS"]
+
+    zipbObj = zip(string_conferences, conferences)
+
+    args = dict(zipbObj)
+
+    print(MWDSI)
+
     return render(request, 'candidates/achievements.html',args)
 
 def programdetails(request):

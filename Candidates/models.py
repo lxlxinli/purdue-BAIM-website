@@ -91,4 +91,14 @@ class student(models.Model):
     INFORM_CAP_aCAP = models.IntegerField(choices=Answer.choices, default=0)
 
     def __str__(self):
-        return self.student_id
+        name = self.last_name + self.first_name
+        return name
+
+class achievement(models.Model):
+    research_name = models.CharField(max_length = 500, default="")
+    posterlink = models.URLField(default="")
+    conference = models.CharField(max_length = 100, default="OTHERS")
+    comments = models.CharField(max_length = 100, default="")
+
+    def __str__(self):
+        return self.research_name

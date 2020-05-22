@@ -17,82 +17,215 @@
 {% endblock %}
 
 {% block body %}
+        
+{%  load columns %}
+{% load static %}
 
 <div id="app-features" class="section">
-    <div class="container">
+    <div class="custom-container container-fluid">
       <div class="section-header">   
         <p class="btn btn-subtitle wow fadeInDown" data-wow-delay="0.2s">2019</p>       
-        <h2 class="section-title wow fadeIn" data-wow-delay="0.2s">Purdue Fall Undergraduate Research Expo</h2>
+        <h2 class="section-title wow fadeIn" data-wow-delay="0.2s">Business Analytics Career Expo (West Lafayette, IN)</h2>
       </div>
       <div class="row">
+
         <div class="col-lg-4 col-md-12 col-xs-12">
-          <div class="content-left text-right">
+          <div class="show-box">
+            <img class="purdue_OUR" src="{% static 'candidates/pictures/BA_EXPO_logo.png' %}" alt="">
+          </div>
+        </div>
+
+        {% for col in BA_EXPO|columns:2 %}
+        <div class="col-lg-4 col-md-12 col-xs-12">
+          <div class="content-right text-left">
+            {% for research in col %}
             <div class="box-item left">
               <span class="icon">
                 <i class="lni-leaf"></i>
               </span>
               <div class="text">
-                <a class="poster" href="http://matthewalanham.com/Students/2019_PFURE/PFURE19_A%20Business%20Analytics%20Approach%20to%20Identify%20Customer%20Loyalty.pdf" target="_blank">Business Analytics Approach to Identify and Grow Customer Loyalty</a>
+                <h5>{{research.comments}}</h5>
+                <a class="poster" href={{research.posterlink}} target="_blank">{{research.research_name}}</a>
               </div>
             </div>
-            <div class="box-item left">
-              <span class="icon">
-                <i class="lni-dashboard"></i>
-              </span>
-              <div class="text">
-                <a class="poster" href="http://matthewalanham.com/Students/2019_PFURE/PFURE19_A%20Business%20Analytics%20Approach%20to%20Identify%20Customer%20Loyalty.pdf" target="_blank">Business Analytics Approach to Identify and Grow Customer Loyalty</a>
-              </div>
-            </div>
-            <div class="box-item left">
-              <span class="icon">
-                <i class="lni-headphone-alt"></i>
-              </span>
-              <div class="text">
-                <a class="poster" href="http://matthewalanham.com/Students/2019_PFURE/PFURE19_A%20Business%20Analytics%20Approach%20to%20Identify%20Customer%20Loyalty.pdf" target="_blank">Business Analytics Approach to Identify and Grow Customer Loyalty</a>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="custom-container container-fluid">
+      <div class="section-header">      
+        <h2 class="section-title wow fadeIn" data-wow-delay="0.2s">INFORMS Business Analytics Conference (Austin, TX)</h2>
+      </div>
+      <div class="row">
 
         <div class="col-lg-4 col-md-12 col-xs-12">
           <div class="show-box">
-            <img class="purdue_OUR" src="{% static 'candidates/pictures/purdue_OUR.jpg' %}" alt="">
+            <img class="purdue_OUR" src="{% static 'candidates/pictures/INFORMS_2019.jpg' %}" alt="">
           </div>
         </div>
 
+        {% for col in INFORMS|columns:2 %}
         <div class="col-lg-4 col-md-12 col-xs-12">
           <div class="content-right text-left">
-            <div class="box-item right">
+            {% for research in col %}
+            <div class="box-item left">
               <span class="icon">
-                <i class="lni-shield"></i>
+                <i class="lni-leaf"></i>
               </span>
               <div class="text">
-                <h4>Secure</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing typesting industry text.</p>
+                <h6>{{research.comments}}</h6>
+                <a class="poster" href={{research.posterlink}} target="_blank">{{research.research_name}}</a>
               </div>
             </div>
-            <div class="box-item right">
-              <span class="icon">
-                <i class="lni-star-filled"></i>
-              </span>
-              <div class="text">
-                <h4>Awesome Rating</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing typesting industry text.</p>
-              </div>
-            </div>
-            <div class="box-item right">
-              <span class="icon">
-                <i class="lni-cup"></i>
-              </span>
-              <div class="text">
-                <h4>Award Winning</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing typesting industry text.</p>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
+        {% endfor %}
       </div>
     </div>
+
+    <br>
+
+    <div class="custom-container container-fluid">
+      <div class="section-header">      
+        <h2 class="section-title wow fadeIn" data-wow-delay="0.2s">Midwest Decision Sciences Institute Conference (Butler University)</h2>
+      </div>
+      <div class="row">
+
+        <div class="col-lg-4 col-md-12 col-xs-12">
+          <div class="show-box">
+            <img class="purdue_OUR" src="{% static 'candidates/pictures/MWDSI-logo.png' %}" alt="">
+          </div>
+        </div>
+
+        {% for col in MWDSI|columns:2 %}
+        <div class="col-lg-4 col-md-12 col-xs-12">
+          <div class="content-right text-left">
+            {% for research in col %}
+            <div class="box-item left">
+              <span class="icon">
+                <i class="lni-leaf"></i>
+              </span>
+              <div class="text">
+                <h6>{{research.comments}}</h6>
+                <a class="poster" href={{research.posterlink}} target="_blank">{{research.research_name}}</a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="custom-container container-fluid">
+      <div class="section-header">      
+        <h2 class="section-title wow fadeIn" data-wow-delay="0.2s">SAS Global Forum - Student Symposium Competition (Dallas, TX)</h2>
+      </div>
+      <div class="row">
+
+        <div class="col-lg-4 col-md-12 col-xs-12">
+          <div class="show-box">
+            <img class="purdue_OUR" src="{% static 'candidates/pictures/SAS_logo.png' %}" alt="">
+          </div>
+        </div>
+
+        {% for col in SAS|columns:2 %}
+        <div class="col-lg-4 col-md-12 col-xs-12">
+          <div class="content-right text-left">
+            {% for research in col %}
+            <div class="box-item left">
+              <span class="icon">
+                <i class="lni-leaf"></i>
+              </span>
+              <div class="text">
+                <h6>{{research.comments}}</h6>
+                <a class="poster" href={{research.posterlink}} target="_blank">{{research.research_name}}</a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="custom-container container-fluid">
+      <div class="section-header">      
+        <h2 class="section-title wow fadeIn" data-wow-delay="0.2s">2019 Southeast Decision Sciences Institute Conference (Savannah, GA)</h2>
+      </div>
+      <div class="row">
+
+        <div class="col-lg-4 col-md-12 col-xs-12">
+          <div class="show-box">
+            <img class="purdue_OUR" src="{% static 'candidates/pictures/SEDSI_logo.png' %}" alt="">
+          </div>
+        </div>
+
+        {% for col in SEDSI|columns:2 %}
+        <div class="col-lg-4 col-md-12 col-xs-12">
+          <div class="content-right text-left">
+            {% for research in col %}
+            <div class="box-item left">
+              <span class="icon">
+                <i class="lni-leaf"></i>
+              </span>
+              <div class="text">
+                <h6>{{research.comments}}</h6>
+                <a class="poster" href={{research.posterlink}} target="_blank">{{research.research_name}}</a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="custom-container container-fluid">
+      <div class="section-header">      
+        <h2 class="section-title wow fadeIn" data-wow-delay="0.2s">Purdue Engagement and Service-Learning Summit (West Lafayette, IN)</h2>
+      </div>
+      <div class="row">
+
+        <div class="col-lg-4 col-md-12 col-xs-12">
+          <div class="show-box">
+            <img class="purdue_OUR" src="{% static 'candidates/pictures/Purdue_Engage_logo.jpg' %}" alt="">
+          </div>
+        </div>
+
+        {% for col in OTHERS|columns:2 %}
+        <div class="col-lg-4 col-md-12 col-xs-12">
+          <div class="content-right text-left">
+            {% for research in col %}
+            <div class="box-item left">
+              <span class="icon">
+                <i class="lni-leaf"></i>
+              </span>
+              <div class="text">
+                <h6>{{research.comments}}</h6>
+                <a class="poster" href={{research.posterlink}} target="_blank">{{research.research_name}}</a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+
   </div>
 
 {% endblock %}
