@@ -94,6 +94,9 @@ def browsecandidates(request):
         #Experience Ranges
         value = re.compile(r'(\d{1,2});(\d{1,3})') #Regex to find min and max value
 
+        #Hired Students
+        student_list = student_list.filter(hired=0)
+
         #Analyst
         if analyst_exp_range is not None:
             ana = value.search(analyst_exp_range)
@@ -237,9 +240,17 @@ def browsecandidates(request):
             student_list = student_list.filter(INFORM_CAP_aCAP=1) 
 
         args ={'form':form,'studentlist':student_list, 'ana_minvalue':ana_minvalue, 
-        'ana_maxvalue':ana_maxvalue, 'prof_minvalue':prof_minvalue, 'prof_maxvalue':prof_maxvalue,"id_list":id_list}
+        'ana_maxvalue':ana_maxvalue, 'prof_minvalue':prof_minvalue, 'prof_maxvalue':prof_maxvalue,"id_list":id_list,
+        "popup":0}
 
-        return render(request, 'candidates/browse.html',args)
+        if not request.COOKIES.get('popup'):
+            response = render(request, 'candidates/browse.html',args)
+            response.set_cookie('popup',"1", 3600 * 24 * 365 )
+            return response
+        else: 
+            args['popup'] = int(request.COOKIES.get('popup'))
+            return render(request, 'candidates/browse.html',args)
+
 
     else:
         form = CandidatePreferencesForm
@@ -250,9 +261,20 @@ def browsecandidates(request):
         prof_maxvalue=120
         id_list = []
 
+        #Hired Students
+        student_list = student_list.filter(hired=0)
+
         args ={'form':form,'studentlist':student_list, 'ana_minvalue':ana_minvalue, 
-        'ana_maxvalue':ana_maxvalue, 'prof_minvalue':prof_minvalue, 'prof_maxvalue':prof_maxvalue, "id_list":id_list}
-        return render(request, 'candidates/browse.html',args)
+        'ana_maxvalue':ana_maxvalue, 'prof_minvalue':prof_minvalue, 'prof_maxvalue':prof_maxvalue, "id_list":id_list,
+        "popup":0}
+        
+        if not request.COOKIES.get('popup'):
+            response = render(request, 'candidates/browse.html',args)
+            response.set_cookie('popup',"1", 3600 * 24 * 365 )
+            return response
+        else: 
+            args['popup'] = int(request.COOKIES.get('popup'))
+            return render(request, 'candidates/browse.html',args)
 
 def achievements(request):
     # test = achievement.objects.order_by('conference').values_list('conference', flat=True).distinct()

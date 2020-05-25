@@ -31,8 +31,10 @@ $(document).ready(function() {
 	from: prof_min,
 	to: prof_max,
   });
-
-  $('#memberModal').modal('show');
+  
+  if (popup==0){
+	  $('#memberModal').modal('show');
+  }
 
   instance = $prof_range.data("ionRangeSlider");
 
